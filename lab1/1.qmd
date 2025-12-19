@@ -7,6 +7,10 @@ format:
     output-file: README.md
 ---
 
+```{r}
+sessionInfo()
+```
+
 ## Цель работы
 
  Ознакомиться с языком программирования R.
