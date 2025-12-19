@@ -1,0 +1,122 @@
+---
+title: "Практическая работа 6"
+subtitle: "Отчёт по практике"
+author: "deawiw@yandex.ru"
+format: 
+  md:
+    output-file: README.md
+---
+
+## Цель работы
+1. Закрепить навыки исследования данных журнала Windows Active Directory
+2. Изучить структуру журнала системы Windows Active Directory
+3. Зекрепить практические навыки использования языка программирования R для обработки данных
+4. Закрепить знания основных функций обработки данных экосистемы tidyverse языка R
+
+## Исходные данные
+1. Программное обеспечение macOS 14.0 
+2. RStudio Desktop
+3. Интерпретатор языка R 4.5.1
+
+## План
+
+1. Подготовить данные  
+2. Анализ
+
+## Шаги:
+1. Импортируйте данные в R.
+```{r}
+library(jsonlite)
+library(dplyr)
+library(tidyr)
+library(xml2)
+library(rvest)
+
+download.file(
+  "https://storage.yandexcloud.net/iamcth-data/dataset.tar.gz",
+  "dataset.tar.gz",
+  mode = "wb")
+
+untar("dataset.tar.gz")
+logs <- stream_in(file("caldera_attack_evals_round1_day1_2019-10-20201108.json"))
+```
+
+2. Привести датасеты в вид “аккуратных данных”, преобразовать типы столбцов в
+соответствии с типом данных
+```{r}
+logs <- logs %>%
+  mutate(`@timestamp` = as.POSIXct(`@timestamp`))
+```
+
+3. Просмотрите общую структуру данных с помощью функции glimpse()
+```{r}
+glimpse(logs)
+```
+
+4. Раскройте датафрейм избавившись от вложенных датафреймов. Для
+обнаружения таких можно использовать функцию dplyr::glimpse(), а для
+раскрытия вложенности – tidyr::unnest(). Обратите внимание, что при
+раскрытии теряются внешние названия колонок – это можно предотвратить
+если использовать параметр tidyr::unnest(..., names_sep = ).
+```{r}
+logs_flat <- logs %>%
+  unnest_wider(winlog, names_sep = "_") %>%
+  unnest_wider(event, names_sep = "_") %>%
+  unnest_wider(host, names_sep = "_") %>%
+  unnest_wider(agent, names_sep = "_")
+```
+
+5. Минимизируйте количество колонок в датафрейме – уберите колоки с
+единственным значением параметра.
+```{r}
+logs_flat <- logs_flat %>%
+select(where(~ n_distinct(., na.rm = TRUE) > 1))
+
+ncol(logs_flat)
+```
+
+6. Какое количество хостов представлено в данном датасете?\
+```{r}
+logs_flat %>%
+  distinct(winlog_computer_name) %>%
+  nrow()
+```
+
+7. Подготовьте датафрейм с расшифровкой Windows Event_ID, приведите типы
+данных к типу их значений.
+```{r}
+page <- read_html("https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor")
+
+event_dict <- html_table(page)[[1]] %>%
+  rename(
+    winlog_event_id = `Current Windows Event ID`,
+    criticality = `Potential Criticality`,
+    description = `Event Summary`
+  ) %>%
+  mutate(
+    winlog_event_id = as.integer(winlog_event_id),
+    criticality = as.character(criticality),
+    description = as.character(description)
+  )
+
+glimpse(event_dict)
+```
+
+8. Есть ли в логе события с высоким и средним уровнем значимости? Сколько их?
+```{r}
+logs_flat %>%
+  left_join(event_dict, by = "winlog_event_id") %>%
+  filter(criticality %in% c("High", "Medium")) %>%
+  count(criticality)
+```
+
+## Оценка результата 
+В ходе работы была проанализирована выгрузка из SIEM‑системы организации на предмет возможной компрометации
+
+##Вывод 
+Исследование позволило изучить структуру журнала Windows Active Directory, закрепить навыки обработки данных в R и освоить основные функции экосистемы tidyverse
+
+
+
+
+
