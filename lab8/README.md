@@ -36,7 +36,7 @@ deawiw@yandex.ru
 ![](screenshots/4.png)
 
 Создание столбчатой диаграммы ![](screenshots/5.png) Отображение
-диаграммы ![](Screenshots/6.png)
+диаграммы ![](screenshots/6.png)
 
 Создание линейного графика ![](screenshots/7.png) Отображение графика
 ![](screenshots/8.png)

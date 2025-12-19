@@ -44,7 +44,7 @@ format:
 Создание столбчатой диаграммы
 ![](screenshots/5.png)
 Отображение диаграммы
-![](Screenshots/6.png)
+![](screenshots/6.png)
 
 Создание линейного графика
 ![](screenshots/7.png)
