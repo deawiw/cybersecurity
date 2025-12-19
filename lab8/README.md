@@ -41,7 +41,7 @@ deawiw@yandex.ru
 Создание линейного графика ![](screenshots/7.png) ![](screenshots/8.png)
 
 1.  Создание дашборда ![](screenshots/9.png) [Ссылка на итоговый
-    дашборд](https://datalens.ru/7rl5ez1d7zh6r-novyy-dashbord)
+    дашборд](https://datalens.ru/4oi9aq09qt90o-dashshshbord)
 
 ## Оценка результата и вывод
 
