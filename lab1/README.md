@@ -54,6 +54,12 @@ sessionInfo()
 
 ## Шаги:
 
+``` r
+print("Начало работы")
+```
+
+    [1] "Начало работы"
+
 1.  Выполнили модуль Basic Building Blocks
 
 Please choose a lesson, or type 0 to return to course menu.

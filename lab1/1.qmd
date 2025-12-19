@@ -7,7 +7,7 @@ format:
     output-file: README.md
 ---
 
-```{r}
+``` {r}
 sessionInfo()
 ```
 
@@ -42,6 +42,10 @@ Numbers)
 пропущенные значения (Missing Values)  
 
 ## Шаги:   
+
+```{r}
+print("Начало работы")
+```
 
 1. Выполнили модуль Basic Building Blocks
 
