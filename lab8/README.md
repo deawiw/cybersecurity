@@ -32,13 +32,14 @@ deawiw@yandex.ru
 
 3.  Создание графиков
 
-Создание круговой диаграммы ![](screenshots/3.png)
+Создание круговой диаграммы ![](screenshots/3.png) Отображение диаграммы
 ![](screenshots/4.png)
 
-Создание столбчатой диаграммы ![](screenshots/5.png)
-![](Screenshots/6.png)
+Создание столбчатой диаграммы ![](screenshots/5.png) Отображение
+диаграммы ![](Screenshots/6.png)
 
-Создание линейного графика ![](screenshots/7.png) ![](screenshots/8.png)
+Создание линейного графика ![](screenshots/7.png) Отображение графика
+![](screenshots/8.png)
 
 1.  Создание дашборда ![](screenshots/9.png) [Ссылка на итоговый
     дашборд](https://datalens.ru/4oi9aq09qt90o-dashshshbord)
