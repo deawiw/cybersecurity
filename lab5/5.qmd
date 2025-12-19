@@ -51,14 +51,17 @@ format:
     Выявить наиболее стабильный кластер.
 
 ## Шаги:
-
-1. Импортируйте данные.
-
+0. Загружаем библиотеки
 ```{r}
 library(readr)
 library(dplyr)
 library(lubridate)
 library(stringr)
+```
+
+1. Импортируйте данные.
+
+```{r}
 wifi_raw <- read_csv("https://storage.yandexcloud.net/dataset.ctfsec/P2_wifi_data.csv")
 ```
 

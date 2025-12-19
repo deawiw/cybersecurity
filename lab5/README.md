@@ -48,7 +48,7 @@ deawiw@yandex.ru
 
 ## Шаги:
 
-1.  Импортируйте данные.
+1.  Загружаем библиотеки
 
 ``` r
 library(readr)
@@ -84,6 +84,11 @@ library(lubridate)
 
 ``` r
 library(stringr)
+```
+
+1.  Импортируйте данные.
+
+``` r
 wifi_raw <- read_csv("https://storage.yandexcloud.net/dataset.ctfsec/P2_wifi_data.csv")
 ```
 
@@ -93,7 +98,6 @@ wifi_raw <- read_csv("https://storage.yandexcloud.net/dataset.ctfsec/P2_wifi_dat
       problems(dat)
 
     Rows: 12249 Columns: 15
-
     ── Column specification ────────────────────────────────────────────────────────
     Delimiter: ","
     chr  (10): BSSID, Privacy, Cipher, Authentication, Power, # beacons, # IV, L...
